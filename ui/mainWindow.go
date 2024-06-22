@@ -1,7 +1,6 @@
 package ui
 
 import (
-	//_ "github.com/ying32/govcl/pkgs/winappres"
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"go_tsk/ui/dialogs"
