@@ -2,7 +2,11 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/ying32/govcl/pkgs/winappres"
+	// 如果使用自定义的syso文件，不要引用这个包 github.com/ying32/govcl/pkgs/winappres
+	// 不带uac的
+	//import _ "github.com/ying32/govcl/pkgs/winappres"
+	// 带uac的
+	//import _ "github.com/ying32/govcl/pkgs/winappres/uac"
 	"github.com/ying32/govcl/vcl"
 	"go_tsk/ui"
 )

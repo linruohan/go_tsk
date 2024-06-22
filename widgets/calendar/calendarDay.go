@@ -28,7 +28,7 @@ func NewDay(owner vcl.IComponent) *TDay {
 	m.solarLabel = vcl.NewLabel(m)
 	m.solarLabel.SetAlign(types.AlClient)
 	m.solarLabel.SetParent(m)
-	m.solarLabel.SetBounds(10, 5, 25, 25)
+	m.solarLabel.SetBounds(5, 5, 35, 35)
 	m.solarLabel.Font().SetColor(colors.ClWheat)
 	m.solarLabel.Font().SetSize(15)
 	m.solarLabel.SetAlignment(types.TaCenter)
@@ -38,7 +38,7 @@ func NewDay(owner vcl.IComponent) *TDay {
 	//农历
 	m.lunarLabel = vcl.NewLabel(m)
 	m.lunarLabel.SetParent(m)
-	m.lunarLabel.SetBounds(10, 30, 30, 25)
+	m.lunarLabel.SetBounds(10, 35, 25, 10)
 	m.lunarLabel.Font().SetColor(colors.ClSkyblue)
 	m.lunarLabel.Font().SetSize(10)
 	m.lunarLabel.SetAlignment(types.TaCenter)

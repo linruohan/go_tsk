@@ -1,2 +1,4 @@
-all:
-	go build -tags tempdll && ./go_tsk.exe
+all:win
+
+win:
+	go build -tags tempdll -ldflags "-s -w -H windowsgui" && ./*.exe

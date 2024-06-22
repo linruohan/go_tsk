@@ -1,10 +1,10 @@
 package dialogs
 
 import (
-	_ "github.com/ying32/govcl/pkgs/winappres"
+	//_ "github.com/ying32/govcl/pkgs/winappres"
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
-	"go_tsk/ui/widgets/calendar"
+	"go_tsk/widgets/calendar"
 )
 
 type TDatePicker struct {
