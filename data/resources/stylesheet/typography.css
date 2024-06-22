@@ -1,9 +1,0 @@
-.dim-label,
-:visited {
-    opacity: 0.75;
-}
-
-.error-message {
-    font-size: 12px;
-    border-radius: 6px;
-}
