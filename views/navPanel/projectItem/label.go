@@ -1,6 +1,7 @@
 package projectItem
 
 import (
+	"fmt"
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"github.com/ying32/govcl/vcl/types/colors"
@@ -35,7 +36,7 @@ func (u *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due stri
 	u.iconLabel = vcl.NewLabel(u)
 	u.iconLabel.SetParent(u)
 	u.iconLabel.SetCaption(u.icon)
-	u.iconLabel.SetBounds(0, 0, 25, 25)
+	u.iconLabel.SetBounds(0, 0, 20, 25)
 	u.iconLabel.SetAlign(types.AlLeft)
 	u.iconLabel.SetAlignment(types.TaCenter)
 	u.iconLabel.SetLayout(types.TlCenter)
@@ -44,7 +45,7 @@ func (u *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due stri
 	u.nameLabel.SetParent(u)
 	u.nameLabel.SetAlign(types.AlClient)
 	u.nameLabel.SetCaption(u.name)
-	u.nameLabel.SetBounds(25, 0, 100, 25)
+	u.nameLabel.SetBounds(20, 0, 130, 25)
 	u.nameLabel.SetAlignment(types.TaCenter)
 	u.nameLabel.SetLayout(types.TlCenter)
 
@@ -52,11 +53,12 @@ func (u *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due stri
 	u.dueLabel.SetParent(u)
 	u.dueLabel.SetCaption(u.due)
 	u.dueLabel.SetAlign(types.AlRight)
-	u.dueLabel.SetBounds(125, 0, 50, 25)
-	u.dueLabel.SetAlignment(types.TaCenter)
-	u.dueLabel.SetLayout(types.TlCenter)
+	u.dueLabel.SetBounds(150, 0, 50, 25)
 }
-
+func (u *TUtilLblProject) setCaption() {
+	captionName := fmt.Sprintf("%-20s %s %s", u.icon, u.name, u.due)
+	u.SetCaption(captionName)
+}
 func (u *TUtilLblProject) SetDue(due string) {
 	u.dueLabel.SetCaption(due)
 }

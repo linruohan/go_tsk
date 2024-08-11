@@ -58,13 +58,6 @@ func NewPnlProject(owner vcl.IComponent) *TPnlProject {
 	c.projectsPnl.SetParent(c)
 	c.projectsPnl.SetAlign(types.AlClient)
 
-	//pro := vcl.NewSpeedButton(c.projectsPnl)
-	//pro.SetParent(c.projectsPnl)
-	//pro.SetCaption("🐮 testproject Name    tommorrow")
-	//pro.SetAlign(types.AlTop)
-	//pro.SetFlat(true)
-	//pro.SetSpacing(-1)
-	//pro.SetTransparent(true)
 	c.AddProjectItem(c.projectsPnl, " ", "project案例", "today")
 	c.AddProjectItem(c.projectsPnl, "📦", "Inbox", "tomorrow")
 	c.AddProjectItem(c.projectsPnl, "🐮", "Today", "tomorrow")
