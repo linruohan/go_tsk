@@ -1,22 +1,22 @@
-package views
+package category
 
 import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types/colors"
 )
 
-type TLabelView struct {
-	TUtilView
+type TLabelsCate struct {
+	TUtilCategory
 }
 
-func NewLabelView(owner vcl.IComponent) *TLabelView {
-	c := new(TLabelView)
+func NewLabelsCate(owner vcl.IComponent) *TLabelsCate {
+	c := new(TLabelsCate)
 	c.icon = "🏷"
 	c.name = "Label"
 	c.count = "10"
 	c.fontColor = colors.ClYellow
 	c.activeColor = colors.ClYellow
 
-	c.NewView(owner, c.icon, c.name, c.count, c.fontColor, c.activeColor)
+	c.CategoryInit(owner, c.icon, c.name, c.count, c.fontColor, c.activeColor)
 	return c
 }
