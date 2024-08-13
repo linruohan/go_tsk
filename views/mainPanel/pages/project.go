@@ -14,5 +14,6 @@ func NewProjectPage(owner vcl.IComponent) *TProjectPage {
 	c.TTabSheet = vcl.NewTabSheet(owner)
 	c.SetVisible(false)
 	c.SetCaption("Project")
+	c.SetPageIndex(4)
 	return c
 }

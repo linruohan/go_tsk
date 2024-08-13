@@ -13,5 +13,6 @@ func NewLabelsPage(owner vcl.IComponent) *TLabelsPage {
 	c.TTabSheet = vcl.NewTabSheet(owner)
 	c.SetVisible(false)
 	c.SetCaption("Labels")
+	c.SetPageIndex(3)
 	return c
 }

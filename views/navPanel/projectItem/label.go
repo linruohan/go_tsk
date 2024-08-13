@@ -17,54 +17,54 @@ type TUtilLblProject struct {
 	due       string
 }
 
-func (u *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due string) {
+func (lbl *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due string) {
 
-	u.TPanel = vcl.NewPanel(owner)
-	u.TPanel.SetBorderStyle(types.None)
-	u.TPanel.SetBorderWidth(0)
-	u.TPanel.Font().SetName("LXGW WenKai GB")
-	u.TPanel.SetColor(0x342C28)
-	u.TPanel.Font().SetSize(12)
-	u.TPanel.Font().SetColor(colors.ClWhite)
-	u.TPanel.SetBounds(0, 0, 200, 50)
-	u.TPanel.SetAlign(types.AlClient)
+	lbl.TPanel = vcl.NewPanel(owner)
+	lbl.TPanel.SetBorderStyle(types.None)
+	lbl.TPanel.SetBorderWidth(0)
+	lbl.TPanel.Font().SetName("LXGW WenKai GB")
+	lbl.TPanel.SetColor(0x342C28)
+	lbl.TPanel.Font().SetSize(12)
+	lbl.TPanel.Font().SetColor(colors.ClWhite)
+	lbl.TPanel.SetBounds(0, 0, 200, 50)
+	lbl.TPanel.SetAlign(types.AlClient)
 
-	u.icon = icon
-	u.name = name
-	u.due = due
+	lbl.icon = icon
+	lbl.name = name
+	lbl.due = due
 
-	u.iconLabel = vcl.NewLabel(u)
-	u.iconLabel.SetParent(u)
-	u.iconLabel.SetCaption(u.icon)
-	u.iconLabel.SetBounds(0, 0, 20, 25)
-	u.iconLabel.SetAlign(types.AlLeft)
-	u.iconLabel.SetAlignment(types.TaCenter)
-	u.iconLabel.SetLayout(types.TlCenter)
+	lbl.iconLabel = vcl.NewLabel(lbl)
+	lbl.iconLabel.SetParent(lbl)
+	lbl.iconLabel.SetCaption(lbl.icon)
+	lbl.iconLabel.SetBounds(0, 0, 20, 25)
+	lbl.iconLabel.SetAlign(types.AlLeft)
+	lbl.iconLabel.SetAlignment(types.TaCenter)
+	lbl.iconLabel.SetLayout(types.TlCenter)
 
-	u.nameLabel = vcl.NewLabel(u)
-	u.nameLabel.SetParent(u)
-	u.nameLabel.SetAlign(types.AlClient)
-	u.nameLabel.SetCaption(u.name)
-	u.nameLabel.SetBounds(20, 0, 130, 25)
-	u.nameLabel.SetAlignment(types.TaCenter)
-	u.nameLabel.SetLayout(types.TlCenter)
+	lbl.nameLabel = vcl.NewLabel(lbl)
+	lbl.nameLabel.SetParent(lbl)
+	lbl.nameLabel.SetAlign(types.AlClient)
+	lbl.nameLabel.SetCaption(lbl.name)
+	lbl.nameLabel.SetBounds(20, 0, 130, 25)
+	lbl.nameLabel.SetAlignment(types.TaCenter)
+	lbl.nameLabel.SetLayout(types.TlCenter)
 
-	u.dueLabel = vcl.NewLabel(u)
-	u.dueLabel.SetParent(u)
-	u.dueLabel.SetCaption(u.due)
-	u.dueLabel.SetAlign(types.AlRight)
-	u.dueLabel.SetBounds(150, 0, 50, 25)
+	lbl.dueLabel = vcl.NewLabel(lbl)
+	lbl.dueLabel.SetParent(lbl)
+	lbl.dueLabel.SetCaption(lbl.due)
+	lbl.dueLabel.SetAlign(types.AlRight)
+	lbl.dueLabel.SetBounds(150, 0, 50, 25)
 }
-func (u *TUtilLblProject) setCaption() {
-	captionName := fmt.Sprintf("%-20s %s %s", u.icon, u.name, u.due)
-	u.SetCaption(captionName)
+func (lbl *TUtilLblProject) setCaption() {
+	captionName := fmt.Sprintf("%-10s %s %s", lbl.icon, lbl.name, lbl.due)
+	lbl.SetCaption(captionName)
 }
-func (u *TUtilLblProject) SetDue(due string) {
-	u.dueLabel.SetCaption(due)
+func (lbl *TUtilLblProject) SetDue(due string) {
+	lbl.dueLabel.SetCaption(due)
 }
-func (u *TUtilLblProject) SetProjectName(name string) {
-	u.nameLabel.SetCaption(name)
+func (lbl *TUtilLblProject) SetProjectName(name string) {
+	lbl.nameLabel.SetCaption(name)
 }
-func (u *TUtilLblProject) SetIcon(icon string) {
-	u.iconLabel.SetCaption(icon)
+func (lbl *TUtilLblProject) SetIcon(icon string) {
+	lbl.iconLabel.SetCaption(icon)
 }

@@ -23,7 +23,7 @@ func main() {
 
 	vcl.Application.Initialize()
 	vcl.Application.SetOnException(func(sender vcl.IObject, e *vcl.Exception) {
-		fmt.Println("exception:", e.ClassName())
+		fmt.Println("exception:", e.ClassName(), e.Message())
 	})
 	vcl.Application.SetMainFormOnTaskBar(true)
 	vcl.Application.SetScaled(true)

@@ -12,8 +12,9 @@ type TPnlProject struct {
 	*vcl.TPanel
 	computerPnl *vcl.TPanel
 
-	projectsPnl     *vcl.TPanel
-	projectItemList []*projectItem.TProject
+	ProjectsPnl     *vcl.TPanel
+	ProjectItemList []*projectItem.TProject
+	AddLbl          *vcl.TLabel
 }
 
 func NewPnlProject(owner vcl.IComponent) *TPnlProject {
@@ -45,36 +46,25 @@ func NewPnlProject(owner vcl.IComponent) *TPnlProject {
 	l.SetAlignment(types.TaCenter)
 	l.SetLayout(types.TlCenter)
 
-	lad := vcl.NewLabel(c.computerPnl)
-	lad.SetHeight(25)
-	lad.SetWidth(50)
-	lad.SetParent(c.computerPnl)
-	lad.SetCaption("➕")
-	lad.Font().SetColor(colors.ClSkyblue)
-	lad.SetAlign(types.AlRight)
-	lad.SetBounds(model.LeftWidth*0.9, 0, model.LeftWidth*0.1, 25)
+	c.AddLbl = vcl.NewLabel(c.computerPnl)
+	c.AddLbl.SetParent(c.computerPnl)
+	c.AddLbl.SetHeight(25)
+	c.AddLbl.SetWidth(50)
+	c.AddLbl.SetParent(c.computerPnl)
+	c.AddLbl.SetCaption("➕")
+	c.AddLbl.Font().SetColor(colors.ClSkyblue)
+	c.AddLbl.SetAlign(types.AlRight)
+	c.AddLbl.SetBounds(model.LeftWidth*0.9, 0, model.LeftWidth*0.1, 25)
 
-	c.projectsPnl = vcl.NewPanel(owner)
-	c.projectsPnl.SetParent(c)
-	c.projectsPnl.SetAlign(types.AlClient)
+	c.ProjectsPnl = vcl.NewPanel(owner)
+	c.ProjectsPnl.SetParent(c)
+	c.ProjectsPnl.SetAlign(types.AlClient)
 
-	c.AddProjectItem(c.projectsPnl, " ", "project案例", "today")
-	c.AddProjectItem(c.projectsPnl, "📦", "Inbox", "tomorrow")
-	c.AddProjectItem(c.projectsPnl, "🐮", "Today", "tomorrow")
-	c.AddProjectItem(c.projectsPnl, "📅", "test project", "tomorrow")
-	c.showProjectList()
+	//c.AddProjectItem(c.ProjectsPnl, " ", "project案例", "today")
+	//c.AddProjectItem(c.ProjectsPnl, "📦", "Inbox", "tomorrow")
+	//c.AddProjectItem(c.ProjectsPnl, "🐮", "Today", "tomorrow")
+	//c.AddProjectItem(c.ProjectsPnl, "📅", "test project", "tomorrow")
+	//c.showProjectList()
 	return c
 
-}
-func (c *TPnlProject) AddProjectItem(owner *vcl.TPanel, icon, name, due string) {
-	pro := projectItem.NewProject(owner, icon, name, due)
-	pro.SetParent(owner)
-	c.projectItemList = append(c.projectItemList, pro)
-}
-func (c *TPnlProject) showProjectList() {
-	for i, pro := range c.projectItemList {
-		pro.SetHeight(25)
-		pro.SetBounds(0, int32(int(25*i)), model.LeftWidth, 25)
-		pro.SetAlign(types.AlTop)
-	}
 }

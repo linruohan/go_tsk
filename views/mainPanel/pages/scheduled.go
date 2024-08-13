@@ -14,5 +14,6 @@ func NewScheduledPage(owner vcl.IComponent) *TScheduledPage {
 	c.TTabSheet = vcl.NewTabSheet(owner)
 	c.SetVisible(false)
 	c.SetCaption("Scheduled")
+	c.SetPageIndex(2)
 	return c
 }

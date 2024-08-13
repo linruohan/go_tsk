@@ -5,7 +5,7 @@ import (
 )
 
 type TProject struct {
-	TUtilLblProject
+	TUtilBtnProject
 }
 
 func NewProject(owner vcl.IComponent, icon, name, due string) *TProject {

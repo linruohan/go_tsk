@@ -14,5 +14,6 @@ func NewInboxPage(owner vcl.IComponent) *TInboxPage {
 	c.TTabSheet = vcl.NewTabSheet(owner)
 	c.SetVisible(false)
 	c.SetCaption("Inbox")
+	c.SetPageIndex(0)
 	return c
 }

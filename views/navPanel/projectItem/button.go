@@ -8,35 +8,33 @@ import (
 )
 
 type TUtilBtnProject struct {
-	*vcl.TSpeedButton
+	*vcl.TXButton
 	icon string
 	name string
 	due  string
 }
 
 func (u *TUtilBtnProject) ProjectInit(owner vcl.IComponent, icon, name, due string) {
-	u.TSpeedButton = vcl.NewSpeedButton(owner)
-	u.TSpeedButton.Font().SetName("LXGW WenKai GB")
-	u.TSpeedButton.SetColor(0x342C28)
-	u.TSpeedButton.Font().SetSize(12)
-	u.TSpeedButton.Font().SetColor(colors.ClWhite)
-	u.TSpeedButton.SetBounds(0, 0, 200, 25)
-	u.TSpeedButton.SetAlign(types.AlClient)
+	u.TXButton = vcl.NewXButton(owner)
+	u.TXButton.Font().SetName("LXGW WenKai GB")
+	u.TXButton.Font().SetSize(12)
+	u.TXButton.Font().SetColor(colors.ClWhite)
+	u.TXButton.SetBounds(-10, 0, 200, 25)
+	u.TXButton.SetAlign(types.AlClient)
 	u.SetAlign(types.AlTop)
-	u.SetFlat(true)
-	u.SetSpacing(-1)
-	u.SetTransparent(true)
+	u.SetBackColor(colors.ClLegacySkyBlue)
+	u.SetHoverColor(colors.ClMoneyGreen)
 
 	u.icon = icon
 	u.name = name
 	u.due = due
-	captionName := fmt.Sprintf("%-20s %s %s", u.icon, u.name, u.due)
-	u.TSpeedButton.SetCaption(captionName)
+	u.setCaption()
 
 }
 
 func (u *TUtilBtnProject) setCaption() {
-	captionName := fmt.Sprintf("%-20s %s %s", u.icon, u.name, u.due)
+	//d := model.LeftWidth - 15
+	captionName := fmt.Sprintf(`%-5s %s %10s`, u.icon, u.name, u.due)
 	u.SetCaption(captionName)
 }
 func (u *TUtilBtnProject) SetDue(due string) {

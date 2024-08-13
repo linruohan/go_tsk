@@ -6,7 +6,7 @@ import (
 )
 
 type TInboxCate struct {
-	TUtilCategory
+	TUtilBtnCategory
 }
 
 func NewInboxCate(owner vcl.IComponent) *TInboxCate {

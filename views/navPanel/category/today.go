@@ -6,7 +6,7 @@ import (
 )
 
 type TTodayCate struct {
-	TUtilCategory
+	TUtilBtnCategory
 }
 
 func NewTodayCate(owner vcl.IComponent) *TTodayCate {

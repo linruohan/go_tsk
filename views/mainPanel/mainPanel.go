@@ -4,11 +4,12 @@ import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"go_tsk/views/mainPanel/pages"
+	"runtime"
 )
 
 type TPnlMain struct {
 	*vcl.TPanel
-	pageCtl      *pages.TPageCtl
+	PageCtl      *pages.TPageCtl
 	isMouseDown  bool
 	mouseDownPos types.TPoint
 }
@@ -26,19 +27,22 @@ func NewPnlMain(owner vcl.IComponent) *TPnlMain {
 	c.SetTabOrder(0)
 	c.SetColor(0x342C29)
 
-	c.SetOnMouseMove(c.OnPnlMainMouseMove)
-	c.SetOnMouseDown(c.OnPnlMainMouseDown)
-	c.SetOnMouseUp(c.OnPnlMainMouseUp)
-
-	c.pageCtl = pages.NewPageCtl(c)
-	c.pageCtl.SetParent(c)
-	c.pageCtl.SetActivePage(c.pageCtl.TodayTabSheet)
-	c.pageCtl.TodayTabSheet.Show()
-
+	c.PageCtl = pages.NewPageCtl(c)
+	c.PageCtl.SetParent(c)
+	c.bindDragFunc()
 	return c
 
 }
 
+func (u *TPnlMain) OnFormConstrainedResize(sender vcl.IObject, minWidth, minHeight, maxWidth, maxHeight *int32) {
+	if runtime.GOOS == "windows" {
+		//if u.Parent().Parent().WindowState() == types.WsMaximized {
+		//	*maxHeight = vcl.Screen.WorkAreaHeight()
+		//}
+	}
+	*minWidth = 400
+	*minHeight = 400
+}
 func (u *TPnlMain) OnPnlMainMouseDown(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
 	if button == types.MbLeft {
 		u.isMouseDown = true
@@ -55,4 +59,13 @@ func (u *TPnlMain) OnPnlMainMouseMove(sender vcl.IObject, shift types.TShiftStat
 }
 func (u *TPnlMain) OnPnlMainMouseUp(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
 	u.isMouseDown = false
+}
+func (u *TPnlMain) bindDragFunc() {
+	var i int32
+	for i = 0; i < u.PageCtl.PageCount(); i++ {
+		sheet := u.PageCtl.Pages(i)
+		sheet.SetOnMouseMove(u.OnPnlMainMouseMove)
+		sheet.SetOnMouseDown(u.OnPnlMainMouseDown)
+		sheet.SetOnMouseUp(u.OnPnlMainMouseUp)
+	}
 }

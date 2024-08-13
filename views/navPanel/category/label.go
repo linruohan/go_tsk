@@ -6,7 +6,7 @@ import (
 )
 
 type TLabelsCate struct {
-	TUtilCategory
+	TUtilBtnCategory
 }
 
 func NewLabelsCate(owner vcl.IComponent) *TLabelsCate {
@@ -14,8 +14,8 @@ func NewLabelsCate(owner vcl.IComponent) *TLabelsCate {
 	c.icon = "🏷"
 	c.name = "Label"
 	c.count = "10"
-	c.fontColor = colors.ClYellow
-	c.activeColor = colors.ClYellow
+	c.fontColor = colors.ClGray
+	c.activeColor = colors.ClGray
 
 	c.CategoryInit(owner, c.icon, c.name, c.count, c.fontColor, c.activeColor)
 	return c

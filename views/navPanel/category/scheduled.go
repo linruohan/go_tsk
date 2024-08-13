@@ -6,7 +6,7 @@ import (
 )
 
 type TScheduledCate struct {
-	TUtilCategory
+	TUtilBtnCategory
 }
 
 func NewScheduledCate(owner vcl.IComponent) *TScheduledCate {
