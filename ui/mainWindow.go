@@ -3,7 +3,6 @@ package ui
 import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
-	"github.com/ying32/govcl/vcl/types/colors"
 	"go_tsk/model"
 	"go_tsk/views/mainPanel"
 	"go_tsk/views/mainPanel/pages"
@@ -35,9 +34,8 @@ func (m *TMainForm) OnFormCreate(sender vcl.IObject) {
 	m.SetClientWidth(1000)
 	m.SetClientHeight(580)
 	m.SetDefaultMonitor(types.DmMainForm)
-	m.Font().SetColor(colors.ClWhite)
-	//m.Font().SetHeight(11)
-	m.Font().SetName("LXGW WenKai GB")
+	m.Font().SetColor(model.FontColor)
+	m.Font().SetName(model.FontName)
 	m.SetPosition(types.PoScreenCenter)
 
 	m.pnlNav = navPanel.NewPnlNav(m)
@@ -55,7 +53,7 @@ func (m *TMainForm) OnFormCreate(sender vcl.IObject) {
 	m.pnlMain.SetParent(m)
 
 	m.AddProject(m.pnlNav.PnlProjects.ProjectsPnl, "🎈", "Project Name", "today")
-	m.pnlNav.PnlProjects.AddLbl.SetOnClick(func(sender vcl.IObject) {
+	m.pnlNav.PnlProjects.AddPro.SetOnClick(func(sender vcl.IObject) {
 		m.AddProject(m.pnlNav.PnlProjects.ProjectsPnl, "🎈", "Project Name", "today")
 	})
 
@@ -63,7 +61,6 @@ func (m *TMainForm) OnFormCreate(sender vcl.IObject) {
 func (m *TMainForm) OnNavClick(sender vcl.IObject) {
 	tmp := vcl.AsSpeedButton(sender)
 	m.pnlMain.PageCtl.SetActivePageIndex(int32(tmp.Tag()))
-	//fmt.Printf("index:%d;tag:%d\n", m.pnlMain.PageCtl.ActivePageIndex(), tmp.Tag())
 }
 func (m *TMainForm) AddProject(owner *vcl.TPanel, icon, name, due string) {
 	m.projectTag += 1
@@ -78,9 +75,7 @@ func (m *TMainForm) AddProject(owner *vcl.TPanel, icon, name, due string) {
 	projectPage := pages.NewProjectPage(m.pnlMain.PageCtl.TPageControl)
 	projectPage.SetParent(m.pnlMain.PageCtl.TPageControl)
 	projectPage.SetPageIndex(int32(m.projectTag))
-	projectPage.SetOnMouseMove(m.pnlMain.OnPnlMainMouseMove)
-	projectPage.SetOnMouseUp(m.pnlMain.OnPnlMainMouseUp)
-	projectPage.SetOnMouseDown(m.pnlMain.OnPnlMainMouseDown)
+	m.pnlMain.PageCtl.BindDragFunc()
 	m.projectPages = append(m.projectPages, projectPage)
 }
 func (m *TMainForm) showProjectList() {

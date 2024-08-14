@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
+	"go_tsk/model"
 	"go_tsk/utils"
 	"time"
 )
@@ -28,10 +29,10 @@ func NewCalendar(owner vcl.IComponent) *TCalendar {
 	p := vcl.NewPanel(c)
 	p.SetParent(c)
 	p.SetBorderStyle(types.AlClient)
-	p.SetColor(0x342C28)
+	p.SetColor(model.BackColor)
 	p.SetBounds(0, 0, 350, 350)
-	p.Font().SetName("LXGW WenKai GB")
-	p.Font().SetSize(12)
+	p.Font().SetName(model.FontName)
+	p.Font().SetSize(model.FontSize)
 
 	c.currentDate = time.Now()
 	c.year = c.currentDate.Year()

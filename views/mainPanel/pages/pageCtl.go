@@ -7,6 +7,8 @@ import (
 
 type TPageCtl struct {
 	*vcl.TPageControl
+	isMouseDown  bool
+	mouseDownPos types.TPoint
 
 	TodayTabSheet     *TTodayPage
 	InboxTabSheet     *TInboxPage
@@ -26,6 +28,7 @@ func NewPageCtl(owner vcl.IComponent) *TPageCtl {
 	c.TPageControl.SetControlStyle(types.TsNone)
 	c.TPageControl.SetAlign(types.AlClient)
 	c.TPageControl.SetTabOrder(0)
+	c.TPageControl.SetTabPosition(types.TpLeft)
 
 	c.InboxTabSheet = NewInboxPage(c)
 	c.InboxTabSheet.SetParent(c)
@@ -39,6 +42,8 @@ func NewPageCtl(owner vcl.IComponent) *TPageCtl {
 	c.LabelsTabSheet = NewLabelsPage(c)
 	c.LabelsTabSheet.SetParent(c)
 
+	//绑定推拽事件
+	c.BindDragFunc()
 	return c
 }
 
@@ -48,6 +53,15 @@ func (f *TPageCtl) hideAllTab() {
 		sheet := f.Pages(i)
 		sheet.SetTabVisible(false)
 		sheet.SetVisible(false)
+	}
+}
+func (f *TPageCtl) BindDragFunc() {
+	var i int32
+	for i = 0; i < f.PageCount(); i++ {
+		sheet := f.Pages(i)
+		sheet.SetOnMouseMove(f.OnPageMouseMove)
+		sheet.SetOnMouseDown(f.OnPageMouseDown)
+		sheet.SetOnMouseUp(f.OnPageMouseUp)
 	}
 }
 
@@ -85,4 +99,22 @@ func (f *TPageCtl) OnActPageNextExecute(sender vcl.IObject) {
 
 func (f *TPageCtl) OnActPageNextUpdate(sender vcl.IObject) {
 	vcl.AsAction(sender).SetEnabled(f.ActivePageIndex() < f.PageCount()-1)
+}
+
+func (f *TPageCtl) OnPageMouseDown(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
+	if button == types.MbLeft {
+		f.isMouseDown = true
+		f.mouseDownPos.X = x
+		f.mouseDownPos.Y = y
+	}
+}
+func (f *TPageCtl) OnPageMouseMove(sender vcl.IObject, shift types.TShiftState, x, y int32) {
+	if f.isMouseDown {
+		parent := f.Parent().Parent()
+		parent.SetLeft(parent.Left() + (x - f.mouseDownPos.X))
+		parent.SetTop(parent.Top() + (y - f.mouseDownPos.Y))
+	}
+}
+func (f *TPageCtl) OnPageMouseUp(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
+	f.isMouseDown = false
 }

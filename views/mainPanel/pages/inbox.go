@@ -15,5 +15,11 @@ func NewInboxPage(owner vcl.IComponent) *TInboxPage {
 	c.SetVisible(false)
 	c.SetCaption("Inbox")
 	c.SetPageIndex(0)
+	c.SetTabVisible(false)
+
+	lbl := vcl.NewLabel(c)
+	lbl.SetParent(c)
+	lbl.SetCaption("Inbox")
+	lbl.SetBounds(0, 0, 200, 25)
 	return c
 }

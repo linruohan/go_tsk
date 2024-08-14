@@ -2,7 +2,6 @@ package pages
 
 import (
 	"github.com/ying32/govcl/vcl"
-	"github.com/ying32/govcl/vcl/types/colors"
 )
 
 type TTodayPage struct {
@@ -16,11 +15,11 @@ func NewTodayPage(owner vcl.IComponent) *TTodayPage {
 	c.SetVisible(false)
 	c.SetCaption("Today")
 	c.SetPageIndex(1)
+	c.SetTabVisible(false)
 
 	lbl := vcl.NewLabel(c)
 	lbl.SetParent(c)
 	lbl.SetCaption("Today")
-	lbl.Font().SetColor(colors.ClRed)
-	lbl.Font().SetSize(18)
+	lbl.SetBounds(0, 0, 200, 25)
 	return c
 }

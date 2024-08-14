@@ -15,5 +15,11 @@ func NewScheduledPage(owner vcl.IComponent) *TScheduledPage {
 	c.SetVisible(false)
 	c.SetCaption("Scheduled")
 	c.SetPageIndex(2)
+	c.SetTabVisible(false)
+
+	lbl := vcl.NewLabel(c)
+	lbl.SetParent(c)
+	lbl.SetCaption("Scheduled")
+	lbl.SetBounds(0, 0, 200, 25)
 	return c
 }

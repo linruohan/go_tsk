@@ -9,9 +9,9 @@ import (
 
 type TPnlMain struct {
 	*vcl.TPanel
-	PageCtl      *pages.TPageCtl
-	isMouseDown  bool
-	mouseDownPos types.TPoint
+	PageCtl *pages.TPageCtl
+	//isMouseDown  bool
+	//mouseDownPos types.TPoint
 }
 
 func NewPnlMain(owner vcl.IComponent) *TPnlMain {
@@ -20,6 +20,7 @@ func NewPnlMain(owner vcl.IComponent) *TPnlMain {
 	c.SetWidth(750)
 	c.SetAlign(types.AlClient)
 	c.SetBevelOuter(types.BvNone)
+	c.SetBevelInner(types.BvNone)
 	c.SetClientWidth(750)
 	c.SetClientHeight(500)
 	c.SetParentBackground(false)
@@ -29,7 +30,7 @@ func NewPnlMain(owner vcl.IComponent) *TPnlMain {
 
 	c.PageCtl = pages.NewPageCtl(c)
 	c.PageCtl.SetParent(c)
-	c.bindDragFunc()
+	//c.bindDragFunc()
 	return c
 
 }
@@ -43,29 +44,21 @@ func (u *TPnlMain) OnFormConstrainedResize(sender vcl.IObject, minWidth, minHeig
 	*minWidth = 400
 	*minHeight = 400
 }
-func (u *TPnlMain) OnPnlMainMouseDown(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
-	if button == types.MbLeft {
-		u.isMouseDown = true
-		u.mouseDownPos.X = x
-		u.mouseDownPos.Y = y
-	}
-}
-func (u *TPnlMain) OnPnlMainMouseMove(sender vcl.IObject, shift types.TShiftState, x, y int32) {
-	if u.isMouseDown {
-		parent := u.Parent()
-		parent.SetLeft(parent.Left() + (x - u.mouseDownPos.X))
-		parent.SetTop(parent.Top() + (y - u.mouseDownPos.Y))
-	}
-}
-func (u *TPnlMain) OnPnlMainMouseUp(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
-	u.isMouseDown = false
-}
-func (u *TPnlMain) bindDragFunc() {
-	var i int32
-	for i = 0; i < u.PageCtl.PageCount(); i++ {
-		sheet := u.PageCtl.Pages(i)
-		sheet.SetOnMouseMove(u.OnPnlMainMouseMove)
-		sheet.SetOnMouseDown(u.OnPnlMainMouseDown)
-		sheet.SetOnMouseUp(u.OnPnlMainMouseUp)
-	}
-}
+
+//func (u *TPnlMain) OnPnlMainMouseDown(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
+//	if button == types.MbLeft {
+//		u.isMouseDown = true
+//		u.mouseDownPos.X = x
+//		u.mouseDownPos.Y = y
+//	}
+//}
+//func (u *TPnlMain) OnPnlMainMouseMove(sender vcl.IObject, shift types.TShiftState, x, y int32) {
+//	if u.isMouseDown {
+//		parent := u.Parent()
+//		parent.SetLeft(parent.Left() + (x - u.mouseDownPos.X))
+//		parent.SetTop(parent.Top() + (y - u.mouseDownPos.Y))
+//	}
+//}
+//func (u *TPnlMain) OnPnlMainMouseUp(sender vcl.IObject, button types.TMouseButton, shift types.TShiftState, x, y int32) {
+//	u.isMouseDown = false
+//}

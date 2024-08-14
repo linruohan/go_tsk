@@ -3,6 +3,7 @@ package category
 import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
+	"go_tsk/model"
 )
 
 type TUtilCategory struct {
@@ -32,9 +33,9 @@ func (u *TUtilCategory) CategoryInit(owner vcl.IComponent, icon, name, count str
 	//u.TPanel.SetBorderWidth(1)
 	u.TPanel.SetBorderStyle(types.None)
 	u.TPanel.SetBorderWidth(0)
-	u.TPanel.Font().SetName("LXGW WenKai GB")
-	u.TPanel.SetColor(0x342C28)
-	u.TPanel.Font().SetSize(12)
+	u.TPanel.Font().SetName(model.FontName)
+	u.TPanel.SetColor(model.BackColor)
+	u.TPanel.Font().SetSize(model.FontSize)
 	u.TPanel.Font().SetColor(u.fontColor)
 	u.TPanel.SetBounds(0, 0, 100, 50)
 	//u.TPanel.SetOnClick(u.OnActive)
@@ -72,11 +73,11 @@ func (u *TUtilCategory) CategoryInit(owner vcl.IComponent, icon, name, count str
 
 func (u *TUtilCategory) OnActive(sender vcl.IObject) {
 	if u.isActive {
-		u.TPanel.SetColor(0x342C28)
+		u.TPanel.SetColor(model.BackColor)
 		u.isActive = false
 		return
 	}
-	u.TPanel.SetColor(0x342C28 + 80)
+	u.TPanel.SetColor(model.BackColor + 80)
 	u.isActive = true
 }
 func (u *TUtilCategory) SetCounter(sender vcl.IObject, cnt string) {

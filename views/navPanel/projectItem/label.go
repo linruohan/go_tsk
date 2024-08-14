@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
-	"github.com/ying32/govcl/vcl/types/colors"
+	"go_tsk/model"
 )
 
 type TUtilLblProject struct {
@@ -22,11 +22,11 @@ func (lbl *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due st
 	lbl.TPanel = vcl.NewPanel(owner)
 	lbl.TPanel.SetBorderStyle(types.None)
 	lbl.TPanel.SetBorderWidth(0)
-	lbl.TPanel.Font().SetName("LXGW WenKai GB")
-	lbl.TPanel.SetColor(0x342C28)
-	lbl.TPanel.Font().SetSize(12)
-	lbl.TPanel.Font().SetColor(colors.ClWhite)
-	lbl.TPanel.SetBounds(0, 0, 200, 50)
+	lbl.TPanel.Font().SetName(model.FontName)
+	lbl.TPanel.SetColor(model.BackColor)
+	lbl.TPanel.Font().SetSize(model.FontSize)
+	lbl.TPanel.Font().SetColor(model.FontColor)
+	lbl.TPanel.SetBounds(0, 0, model.LeftWidth, 50)
 	lbl.TPanel.SetAlign(types.AlClient)
 
 	lbl.icon = icon
@@ -45,7 +45,7 @@ func (lbl *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due st
 	lbl.nameLabel.SetParent(lbl)
 	lbl.nameLabel.SetAlign(types.AlClient)
 	lbl.nameLabel.SetCaption(lbl.name)
-	lbl.nameLabel.SetBounds(20, 0, 130, 25)
+	lbl.nameLabel.SetBounds(20, 0, model.LeftWidth-70, 25)
 	lbl.nameLabel.SetAlignment(types.TaCenter)
 	lbl.nameLabel.SetLayout(types.TlCenter)
 
@@ -53,7 +53,7 @@ func (lbl *TUtilLblProject) ProjectInit(owner vcl.IComponent, icon, name, due st
 	lbl.dueLabel.SetParent(lbl)
 	lbl.dueLabel.SetCaption(lbl.due)
 	lbl.dueLabel.SetAlign(types.AlRight)
-	lbl.dueLabel.SetBounds(150, 0, 50, 25)
+	lbl.dueLabel.SetBounds(model.LeftWidth-50, 0, 50, 25)
 }
 func (lbl *TUtilLblProject) setCaption() {
 	captionName := fmt.Sprintf("%-10s %s %s", lbl.icon, lbl.name, lbl.due)

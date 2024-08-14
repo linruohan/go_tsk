@@ -5,6 +5,7 @@ import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"github.com/ying32/govcl/vcl/types/colors"
+	"go_tsk/model"
 )
 
 type TUtilBtnProject struct {
@@ -16,10 +17,10 @@ type TUtilBtnProject struct {
 
 func (u *TUtilBtnProject) ProjectInit(owner vcl.IComponent, icon, name, due string) {
 	u.TXButton = vcl.NewXButton(owner)
-	u.TXButton.Font().SetName("LXGW WenKai GB")
-	u.TXButton.Font().SetSize(12)
-	u.TXButton.Font().SetColor(colors.ClWhite)
-	u.TXButton.SetBounds(-10, 0, 200, 25)
+	u.TXButton.Font().SetName(model.FontName)
+	u.TXButton.Font().SetSize(model.FontSize)
+	u.TXButton.Font().SetColor(model.FontColor)
+	u.TXButton.SetBounds(-10, 0, model.LeftWidth, 25)
 	u.TXButton.SetAlign(types.AlClient)
 	u.SetAlign(types.AlTop)
 	u.SetBackColor(colors.ClLegacySkyBlue)

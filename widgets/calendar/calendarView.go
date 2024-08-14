@@ -7,6 +7,7 @@ import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"github.com/ying32/govcl/vcl/types/colors"
+	"go_tsk/model"
 	"go_tsk/utils"
 	"strconv"
 	"time"
@@ -22,9 +23,9 @@ type TView struct {
 func NewView(owner vcl.IComponent) *TView {
 	m := new(TView)
 	m.TPanel = vcl.NewPanel(owner)
-	m.TPanel.SetColor(0x342C28)
-	m.TPanel.Font().SetName("LXGW WenKai GB")
-	m.TPanel.Font().SetSize(12)
+	m.TPanel.SetColor(model.BackColor)
+	m.TPanel.Font().SetName(model.FontName)
+	m.TPanel.Font().SetSize(model.FontSize)
 	m.TPanel.SetBorderStyle(types.None)
 	m.TPanel.SetBorderWidth(2)
 
@@ -73,7 +74,7 @@ func (m *TView) fillGridDays(startPos, endDay int, day time.Time) {
 		item.lunarLabel.SetCaption(lunarDay.GetDayInChinese())
 		//today
 		if currentDate.Equal(m.currentDate) {
-			item.SetColor(0x342C28 + 20)
+			item.SetColor(model.BackColor + 20)
 		}
 		//周末
 		if currentDate.Weekday() == 0 || currentDate.Weekday() == 6 {
@@ -100,7 +101,7 @@ func (m *TView) fillGridDays(startPos, endDay int, day time.Time) {
 func (m *TView) ClearSelect() {
 	for idx, day := range m.days {
 		if day.Color() == colors.ClGreen || day.solarLabel.Color() == colors.ClGreen {
-			m.days[idx].SetColor(0x342C28)
+			m.days[idx].SetColor(model.BackColor)
 		}
 	}
 }

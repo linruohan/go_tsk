@@ -4,6 +4,7 @@ import (
 	"github.com/ying32/govcl/vcl"
 	"github.com/ying32/govcl/vcl/types"
 	"github.com/ying32/govcl/vcl/types/colors"
+	"go_tsk/model"
 )
 
 type TDay struct {
@@ -16,9 +17,9 @@ type TDay struct {
 func NewDay(owner vcl.IComponent) *TDay {
 	m := new(TDay)
 	m.TPanel = vcl.NewPanel(owner)
-	m.TPanel.SetColor(0x342C28)
-	m.TPanel.Font().SetName("LXGW WenKai GB")
-	m.TPanel.Font().SetSize(12)
+	m.TPanel.SetColor(model.BackColor)
+	m.TPanel.Font().SetName(model.FontName)
+	m.TPanel.Font().SetSize(model.FontSize)
 	m.TPanel.SetBorderStyle(types.None)
 	m.TPanel.SetBorderWidth(1)
 	m.TPanel.SetOnClick(m.OnDayClick)
@@ -48,7 +49,7 @@ func NewDay(owner vcl.IComponent) *TDay {
 	m.flagLabel.SetParent(m)
 	m.flagLabel.SetBounds(35, 0, 15, 15)
 	m.flagLabel.Font().SetSize(10)
-	m.flagLabel.Font().SetColor(colors.ClWhite)
+	m.flagLabel.Font().SetColor(model.FontColor)
 
 	return m
 }

@@ -14,5 +14,11 @@ func NewLabelsPage(owner vcl.IComponent) *TLabelsPage {
 	c.SetVisible(false)
 	c.SetCaption("Labels")
 	c.SetPageIndex(3)
+	c.SetTabVisible(false)
+
+	lbl := vcl.NewLabel(c)
+	lbl.SetParent(c)
+	lbl.SetCaption("Labels")
+	lbl.SetBounds(0, 0, 200, 25)
 	return c
 }

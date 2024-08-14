@@ -14,7 +14,7 @@ type TPnlProject struct {
 
 	ProjectsPnl     *vcl.TPanel
 	ProjectItemList []*projectItem.TProject
-	AddLbl          *vcl.TLabel
+	AddPro          *vcl.TSpeedButton
 }
 
 func NewPnlProject(owner vcl.IComponent) *TPnlProject {
@@ -38,23 +38,26 @@ func NewPnlProject(owner vcl.IComponent) *TPnlProject {
 	l := vcl.NewLabel(c.computerPnl)
 	l.SetParent(c.computerPnl)
 	l.SetCaption("On this Computer")
-	l.Font().SetSize(14)
-	l.Font().SetColor(colors.ClWhite)
+	l.Font().SetName("Yuppy SC Regular")
+	l.Font().SetSize(model.FontSize + 3)
+	l.Font().SetColor(model.FontColor)
 	l.SetHeight(25)
-	l.SetWidth(50)
-	l.SetBounds(0, 0, model.LeftWidth*0.9, 25)
+	l.SetWidth(model.LeftWidth - 50)
+	l.SetBounds(20, 0, model.LeftWidth*0.9, 25)
 	l.SetAlignment(types.TaCenter)
 	l.SetLayout(types.TlCenter)
 
-	c.AddLbl = vcl.NewLabel(c.computerPnl)
-	c.AddLbl.SetParent(c.computerPnl)
-	c.AddLbl.SetHeight(25)
-	c.AddLbl.SetWidth(50)
-	c.AddLbl.SetParent(c.computerPnl)
-	c.AddLbl.SetCaption("➕")
-	c.AddLbl.Font().SetColor(colors.ClSkyblue)
-	c.AddLbl.SetAlign(types.AlRight)
-	c.AddLbl.SetBounds(model.LeftWidth*0.9, 0, model.LeftWidth*0.1, 25)
+	c.AddPro = vcl.NewSpeedButton(c.computerPnl)
+	c.AddPro.SetParent(c.computerPnl)
+	c.AddPro.SetHeight(25)
+	c.AddPro.SetWidth(50)
+	c.AddPro.SetParent(c.computerPnl)
+	c.AddPro.SetCaption("➕")
+	c.AddPro.SetFlat(true)
+	c.AddPro.SetTransparent(true)
+	c.AddPro.Font().SetColor(colors.ClSkyblue)
+	c.AddPro.SetAlign(types.AlRight)
+	c.AddPro.SetBounds(model.LeftWidth*0.9, 0, model.LeftWidth*0.1, 25)
 
 	c.ProjectsPnl = vcl.NewPanel(owner)
 	c.ProjectsPnl.SetParent(c)
